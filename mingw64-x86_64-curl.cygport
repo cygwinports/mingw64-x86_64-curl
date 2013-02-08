@@ -1,0 +1,30 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-curl"
+VERSION=7.29.0
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="cURL file transfer library for Win64 toolchain"
+DESCRIPTION="This package does NOT contain cygwin binaries.  Instead, it
+contains msvcrt-linked binaries (aka 'mingw').  It is for use with the
+mingw64-x86_64-gcc cross compiler, and installs into the
+/usr/x86_64-w64-mingw32/sys-root/mingw/{lib,include} directories."
+HOMEPAGE="http://curl.haxx.se/"
+SRC_URI="http://curl.haxx.se/download/curl-${VERSION}.tar.lzma"
+SRC_DIR="curl-${VERSION}"
+
+DIFF_EXCLUDES="Makefile curlbuild.h curl_config.h"
+
+# librtmp: not in Fedora due to unchallenged DMCA action
+CYGCONF_ARGS="
+	--disable-hidden-symbols
+	--disable-ares
+	--without-gssapi
+	--without-krb4
+	--without-librtmp
+	--without-spnego
+"
+MAKEOPTS+=" bin_PROGRAMS= man_MANS= "
+
+KEEP_LA_FILES="none"
