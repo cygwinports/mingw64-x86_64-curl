@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-curl"
-VERSION=7.29.0
+VERSION=7.33.0
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="cURL file transfer library for Win64 toolchain"
@@ -15,15 +15,24 @@ SRC_URI="http://curl.haxx.se/download/curl-${VERSION}.tar.lzma"
 SRC_DIR="curl-${VERSION}"
 
 DIFF_EXCLUDES="Makefile curlbuild.h curl_config.h"
+# uses private wrapper for initializing libtool
+DIFF_EXCLUDES+=" Makefile.in install-sh libtool.m4 lt*.* mkinstalldirs"
 
 # librtmp: not in Fedora due to unchallenged DMCA action
+# ares: considerably slower
 CYGCONF_ARGS="
+	--enable-debug --enable-optimize
 	--disable-hidden-symbols
 	--disable-ares
+	--enable-ipv6
+	--enable-ldap
 	--without-gssapi
-	--without-krb4
 	--without-librtmp
+	--with-libssh2
 	--without-spnego
+	--with-winidn
+	--with-winssl
+	--with-zlib
 "
 MAKEOPTS+=" bin_PROGRAMS= man_MANS= "
 
