@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-curl"
-VERSION=7.37.0
+VERSION=7.37.1
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="cURL file transfer library for Win64 toolchain"
@@ -27,6 +27,7 @@ CYGCONF_ARGS="
 	--enable-ipv6
 	--enable-ldap
 	--without-gssapi
+	--without-libidn
 	--without-librtmp
 	--with-libssh2
 	--without-spnego
