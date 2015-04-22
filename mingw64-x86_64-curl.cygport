@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-curl"
-VERSION=7.41.0
+VERSION=7.42.0
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="cURL file transfer library for Win64 toolchain"
@@ -16,7 +16,7 @@ SRC_DIR="curl-${VERSION}"
 
 DIFF_EXCLUDES="Makefile curlbuild.h curl_config.h"
 # uses private wrapper for initializing libtool
-DIFF_EXCLUDES+=" Makefile.in install-sh libtool.m4 lt*.* mkinstalldirs"
+DIFF_EXCLUDES+=" Makefile.in install-sh libtool.m4 lt*.* missing mkinstalldirs"
 
 # librtmp: not in Fedora due to unchallenged DMCA action
 # ares: considerably slower
