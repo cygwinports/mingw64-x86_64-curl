@@ -2,7 +2,7 @@ CROSS_HOST="x86_64-w64-mingw32"
 inherit cross
 
 NAME="mingw64-x86_64-curl"
-VERSION=7.55.0
+VERSION=7.55.1
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="cURL file transfer library for Win64 toolchain"
@@ -38,9 +38,3 @@ CYGCONF_ARGS="
 	--with-zlib
 "
 MAKEOPTS+=" bin_PROGRAMS= man_MANS= dist_man_MANS= "
-
-src_install() {
-	cd ${B}
-	cyginstall
-	cyginstall -C docs/libcurl
-}
